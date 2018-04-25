@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>制作一个简单的菜单动画效果</title>
+		<style>
+			.wrapper {
+				/*居中*/
+				position: absolute;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				right: 0;
+				width: 200px;
+				height: 100px;
+				margin: auto;
+				background: rgba(227, 227, 227, 0.3);
+				text-align: center;
+			}
+			.title {
+				position: relative;
+			}
+			.line {
+				position: absolute;
+				top: 1.3rem;
+				content: "";
+				width: 0px;
+				height: 3px;
+				background: royalblue;
+				transition: all 0.3s;
+				transition-timing-function:cubic-bezier(0.25,0.1,0.25,1);
+			}
+			.line-left {
+				right: 50%;
+			}
+			.line-right {
+				left: 50%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrapper">
+			<p>
+				<span id="title" class="title">前端学院
+        		<span class="line line-left"></span>
+				<span class="line line-right"></span>
+				</span>
+			</p>
+			<button id="action_btn">切换样式</button>
+		</div>
+		<script>
+			var lines = document.getElementsByClassName('line');
+			var btn = document.getElementById('action_btn');
+			var title = document.getElementById('title');
+			btn.addEventListener('click', function() {
+				var el_with = title.offsetWidth;
+				for(var i = 0; i < lines.length; i++) {
+					if(lines[i].style.width) {
+						lines[i].style.width ='';
+						title.style.color ='';
+					} else {
+						title.style.color ='royalblue';
+						lines[i].style.width = el_with / 2 + "px";
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>
